@@ -1,9 +1,9 @@
 import React from 'react';
 
-const Error = () => {
+const error = () => {
     return (
-        <p>Error: Path does not exist!</p>
+        <p>Klaida: Neteisingas adresas!</p>
     )
 }
 
-export default Error;
+export default error;
