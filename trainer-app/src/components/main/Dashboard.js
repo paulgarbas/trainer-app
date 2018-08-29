@@ -11,13 +11,13 @@ const dashboard = () => (
         <Container>            
             <Row className='dashboard'>
                 <Col>
-                    <Link to='/newClient'>
-                        <Button bsStyle='success'>Naujas klientas</Button>
+                    <Link to='/new-client'>
+                        <Button color='primary' className='dashboardBtn'>Naujas klientas</Button>
                     </Link>
                 </Col>
                 <Col>
-                    <Link to='/existingClient'>
-                        <Button bsStyle='success'>Egzistuojantis klientas</Button>
+                    <Link to='/existing-client'>
+                        <Button color='primary' className='dashboardBtn'>Egzistuojantis klientas</Button>
                     </Link>
                 </Col>
             </Row>

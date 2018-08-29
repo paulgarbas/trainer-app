@@ -1,0 +1,17 @@
+.camera {
+    height: 100%;
+}
+
+.react-html5-camera-photo {
+    height: 100%;
+    overflow: hidden;
+}
+
+.react-html5-camera-photo>img, .react-html5-camera-photo > video {
+    width: 100% !important;
+}
+
+video {
+    height: 100%;
+    object-fit: cover;
+}

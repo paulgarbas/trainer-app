@@ -1,0 +1,19 @@
+.photo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    max-width: 250px;
+    min-width: 250px;
+    height: 300px;
+    border: 1px solid #000;
+    margin-top: 50px;
+
+    a {
+        padding: 10px;
+    }
+
+    .cameraIcon {
+        font-size: 50px;
+    }
+}

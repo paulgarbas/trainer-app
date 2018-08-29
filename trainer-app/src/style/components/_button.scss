@@ -1,3 +1,24 @@
 // -----------------------------------------------------------------------------
 // This file contains all styles related to the button component.
 // -----------------------------------------------------------------------------
+
+button {
+    width: 100%;
+    min-width: 200px;
+}
+
+.dashboardBtn {
+    margin-bottom: 20px;
+}
+
+@media (min-width: 460px) {
+    button {
+        width: auto;
+    }
+    
+    .loginBtn {      
+        .forgotBtn {
+            text-align: right;
+        }
+    }
+}

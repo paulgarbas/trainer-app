@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { Container, Form, FormGroup, Button, Label, Input } from 'reactstrap'; 
 import axios from 'axios';
+import Auxiliary from '../../hoc/Auxiliary';
+import Footer from '../Footer';
 
 class ForgotPassword extends Component {
 
@@ -28,23 +30,26 @@ class ForgotPassword extends Component {
 
     render() {
         return (
-            <Container>
-                <Form horizontal onSubmit={this.submitHandler} >
-                    <FormGroup>
-                        <Label for="exampleEmail">Elektroninis paštas</Label>
-                            <Input 
-                                type="email" 
-                                name="email"
-                                placeholder="Įveskite el. paštą"
-                                value={this.state.email}
-                                onChange={this.changeHandler} />
-                    </FormGroup>
-        
-                    <FormGroup>
-                        <Button type="submit">Priminti</Button>
-                    </FormGroup>
-                </Form>
-            </Container>  
+            <Auxiliary>
+                <Container>
+                    <Form onSubmit={this.submitHandler} >
+                        <FormGroup>
+                            <Label for="exampleEmail">Elektroninis paštas</Label>
+                                <Input 
+                                    type="email" 
+                                    name="email"
+                                    placeholder="Įveskite el. paštą"
+                                    value={this.state.email}
+                                    onChange={this.changeHandler} />
+                        </FormGroup>
+            
+                        <FormGroup>
+                            <Button type="submit" color='success'>Priminti</Button>
+                        </FormGroup>
+                    </Form>
+                </Container>
+                <Footer />  
+            </Auxiliary>
         )
     }
 }
