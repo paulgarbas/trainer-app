@@ -1,10 +1,9 @@
 import React, { Component } from 'react'; 
 import { Container, Row, Col, Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCamera } from '@fortawesome/free-solid-svg-icons'
 import Auxiliary from '../../hoc/Auxiliary';
 import Header from '../Header';
 import Footer from '../Footer';
+import CameraLogo from './CameraLogo';
 import Photo from './Photo';
 
 class NewClient extends Component {
@@ -32,31 +31,21 @@ class NewClient extends Component {
                             <Row>
                                 <Col lg>
                                     <div className='photo'>  
-                                        {this.state.startCamera1 ? null :
-                                            <a href="#" 
-                                                data-id="startCamera1"
-                                                onClick={this.clickHandler} >
-                                                <FontAwesomeIcon 
-                                                    icon={faCamera} 
-                                                    className='cameraIcon' />
-                                            </a> 
+                                        {this.state.startCamera1 ? <Photo /> :
+                                            <CameraLogo
+                                                id='startCamera1'
+                                                clicked={this.clickHandler} />
                                         }
-                                        {this.state.startCamera1 ? <Photo /> : null}
                                     </div>
                                 </Col>
                                 <Col lg>
-                                <div className='photo'>  
-                                    {this.state.startCamera2 ? null :
-                                        <a href="#" 
-                                            data-id="startCamera2"
-                                            onClick={this.clickHandler} >
-                                            <FontAwesomeIcon 
-                                                icon={faCamera} 
-                                                className='cameraIcon' />
-                                        </a> 
-                                    }
-                                    {this.state.startCamera2 ? <Photo /> : null}
-                                </div>
+                                    <div className='photo'>  
+                                        {this.state.startCamera2 ? <Photo /> :
+                                            <CameraLogo
+                                                id='startCamera2'
+                                                clicked={this.clickHandler} />
+                                        }
+                                    </div>
                                 </Col>
                             </Row>
                         </Col>
