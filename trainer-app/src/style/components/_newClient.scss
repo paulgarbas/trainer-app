@@ -1,4 +1,4 @@
-.photo {
+.photoFrame {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -7,7 +7,7 @@
     min-width: 250px;
     height: 300px;
     border: 1px solid #000;
-    margin-top: 50px;
+    margin: 50px auto 0 auto;
 
     a {
         padding: 10px;
@@ -17,3 +17,5 @@
         font-size: 50px;
     }
 }
+
+

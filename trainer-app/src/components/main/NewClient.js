@@ -4,20 +4,23 @@ import Auxiliary from '../../hoc/Auxiliary';
 import Header from '../Header';
 import Footer from '../Footer';
 import CameraLogo from './CameraLogo';
-import Photo from './Photo';
+import Spinner from '../helpers/Spinner';
+import TakePhoto from './TakePhoto';
 
 class NewClient extends Component {
 
     state = {
         startCamera1: null,
-        startCamera2: null        
+        startCamera2: null,
+        loading: false        
     };
 
     clickHandler = (event) => {
         event.preventDefault();
         
         this.setState({
-           [event.currentTarget.dataset.id]: true
+           [event.currentTarget.dataset.id]: true,
+           loading: true
         });
     }
   
@@ -30,8 +33,8 @@ class NewClient extends Component {
                         <Col>
                             <Row>
                                 <Col lg>
-                                    <div className='photo'>  
-                                        {this.state.startCamera1 ? <Photo /> :
+                                    <div className='photoFrame'>  
+                                        {this.state.startCamera1 ? <TakePhoto /> :
                                             <CameraLogo
                                                 id='startCamera1'
                                                 clicked={this.clickHandler} />
@@ -39,8 +42,8 @@ class NewClient extends Component {
                                     </div>
                                 </Col>
                                 <Col lg>
-                                    <div className='photo'>  
-                                        {this.state.startCamera2 ? <Photo /> :
+                                    <div className='photoFrame'>  
+                                        {this.state.startCamera2 ? <TakePhoto /> :
                                             <CameraLogo
                                                 id='startCamera2'
                                                 clicked={this.clickHandler} />
@@ -52,21 +55,12 @@ class NewClient extends Component {
                         
                         <Col>
                             <Form>                            
-                                <FormGroup tag="fieldset">
-                                    <Label for="exampleSex">Lytis</Label>
-                                    <FormGroup check>
-                                        <Label check>
-                                            <Input type="radio" name="woman" />{' '}
-                                            Moteris
-                                        </Label>
-                                    </FormGroup>
-                                    
-                                    <FormGroup check>
-                                        <Label check>
-                                            <Input type="radio" name="man" />{' '}
-                                            Vyras
-                                        </Label>
-                                    </FormGroup>
+                                <FormGroup>
+                                    <Label for="exampleSelect">Lytis</Label>
+                                    <Input type="select" name="select" id="exampleSelect">
+                                        <option>Moteris</option>
+                                        <option>Vyras</option>
+                                    </Input>
                                 </FormGroup>
                                 
                                 <FormGroup>
