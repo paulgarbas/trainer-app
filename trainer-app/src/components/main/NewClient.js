@@ -1,10 +1,9 @@
 import React, { Component } from 'react'; 
-import { Container, Row, Col, Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
+import { Container, Row, Col, Button, Form, FormGroup, Label, Input } from 'reactstrap';
 import Auxiliary from '../../hoc/Auxiliary';
 import Header from '../Header';
 import Footer from '../Footer';
 import CameraLogo from './CameraLogo';
-import Spinner from '../helpers/Spinner';
 import TakePhoto from './TakePhoto';
 
 class NewClient extends Component {
@@ -12,15 +11,32 @@ class NewClient extends Component {
     state = {
         startCamera1: null,
         startCamera2: null,
-        loading: false        
+        loading: false,
+        firstPhotoWasTaken: false,
+        secondPhotoWasTaken: false,
+        resetFirstCamera: false,
+        resetSecondCamera: false
     };
 
-    clickHandler = (event) => {
+    clickCameraLogoHandler = (event) => {
         event.preventDefault();
         
         this.setState({
            [event.currentTarget.dataset.id]: true,
            loading: true
+        });
+    }
+  
+    clickCameraHandler = (dataFromChild) => {
+        this.setState({
+            [dataFromChild[0]]: dataFromChild[1]
+        });
+    }
+
+    clickResetHandler = (event) => {
+        console.log(event.currentTarget.dataset.id);
+        this.setState({
+            [event.currentTarget.dataset.id]: true
         });
     }
   
@@ -32,23 +48,44 @@ class NewClient extends Component {
                     <Row>
                         <Col>
                             <Row>
-                                <Col lg>
+                                <Col lg className='photoFrame__wrapper'>
                                     <div className='photoFrame'>  
-                                        {this.state.startCamera1 ? <TakePhoto /> :
+                                        {this.state.startCamera1 ? <TakePhoto cameraWasClicked={this.clickCameraHandler}
+                                        id='firstPhotoWasTaken' /> :
                                             <CameraLogo
                                                 id='startCamera1'
-                                                clicked={this.clickHandler} />
+                                                clicked={this.clickCameraLogoHandler} />
                                         }
                                     </div>
+                                    
+                                    {/* {this.state.firstPhotoWasTaken ? 
+                                    <Button 
+                                        color='warning' 
+                                        data-id='resetFirstCamera'
+                                        className='resetCamera'
+                                        onClick={this.clickResetHandler} >
+                                            Nauja nuotrauka
+                                    </Button> : null} */}
                                 </Col>
-                                <Col lg>
+                                <Col lg className='photoFrame__wrapper'>
                                     <div className='photoFrame'>  
-                                        {this.state.startCamera2 ? <TakePhoto /> :
+                                        {this.state.startCamera2 ? <TakePhoto 
+                                        cameraWasClicked={this.clickCameraHandler}
+                                        id='secondPhotoWasTaken' /> :
                                             <CameraLogo
                                                 id='startCamera2'
-                                                clicked={this.clickHandler} />
+                                                clicked={this.clickCameraLogoHandler} />
                                         }
                                     </div>
+                                    
+                                    {/* {this.state.secondPhotoWasTaken ? 
+                                    <Button 
+                                        color='warning' 
+                                        data-id='resetSecondCamera'
+                                        className='resetCamera'
+                                        onClick={this.clickResetHandler} >
+                                            Nauja nuotrauka
+                                    </Button> : null} */}
                                 </Col>
                             </Row>
                         </Col>
@@ -56,8 +93,8 @@ class NewClient extends Component {
                         <Col>
                             <Form>                            
                                 <FormGroup>
-                                    <Label for="exampleSelect">Lytis</Label>
-                                    <Input type="select" name="select" id="exampleSelect">
+                                    <Label for="exampleSex">Lytis</Label>
+                                    <Input type="select" name="select" id="exampleSex">
                                         <option>Moteris</option>
                                         <option>Vyras</option>
                                     </Input>

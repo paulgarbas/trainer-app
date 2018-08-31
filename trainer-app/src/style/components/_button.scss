@@ -11,6 +11,12 @@ button {
     margin-bottom: 20px;
 }
 
+.resetCamera {
+    position: absolute;
+    bottom: -60px;
+    width: 250px;
+}
+
 @media (min-width: 460px) {
     button {
         width: auto;
