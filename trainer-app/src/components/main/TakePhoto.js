@@ -4,7 +4,7 @@ import Camera from 'react-html5-camera-photo';
 import 'react-html5-camera-photo/build/css/index.css';
 import Spinner from '../helpers/Spinner';
 import Photo from './Photo';
-import { Button } from 'reactstrap';
+// import { Button } from 'reactstrap';
  
 class TakePhoto extends Component {
 	
@@ -20,14 +20,21 @@ class TakePhoto extends Component {
 		this.setState({ 
 			[this.props.id]: photo
 		});
-		this.props.cameraWasClicked([this.props.id, true]);
-		console.log(this.props.id);
+		// this.props.cameraWasClicked([this.props.id, true]);
+		// console.log(this.props.id);
 	}
 
 	onCameraStart (stream) {
 		this.setState({
 			loading: false
 		});
+	}
+
+	resetHandler = (event) => {
+		this.setState = ({
+			[event.currentTarget.dataset.id]: null
+		});
+		console.log(event.currentTarget.dataset.id);
 	}
 
 	render () {
@@ -46,12 +53,20 @@ class TakePhoto extends Component {
 						isMaxResolution = {false}
 					/>
 
-					{/* <Photo path={this.state.secondPhotoWasTaken} altName='Nuotrauka iš priekio' /> */}
-					{this.state.firstPhotoWasTaken ? <Photo path={this.state.firstPhotoWasTaken} altName='Nuotrauka iš priekio' /> : null}
-					{this.state.secondPhotoWasTaken ? <Photo path={this.state.secondPhotoWasTaken} altName='Nuotrauka iš šono' /> : null}
-
-					{this.state.firstPhotoWasTaken ? <Button color='warning' className='resetCamera'>Nauja nuotrauka</Button> : null}
-					{this.state.secondPhotoWasTaken ? <Button color='warning' className='resetCamera'>Nauja nuotrauka</Button> : null}
+					{this.state.firstPhotoWasTaken ? 
+						<Photo 
+							data-id='firstPhotoWasTaken'
+							path={this.state.firstPhotoWasTaken} 
+							altName='Nuotrauka iš priekio'
+							resetClicked={this.resetHandler} /> : 
+					null}
+					{this.state.secondPhotoWasTaken ? 
+						<Photo 
+							data-id='secondPhotoWasTaken'
+							path={this.state.secondPhotoWasTaken} 
+							altName='Nuotrauka iš šono'
+							resetClicked={this.resetHandler} /> : 
+					null}
 				</div>
 			</Auxiliary>
 		);
