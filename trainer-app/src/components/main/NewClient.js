@@ -1,5 +1,15 @@
 import React, { Component } from 'react'; 
 import { Container, Row, Col, Button, Form, FormGroup, Label, Input } from 'reactstrap';
+// import moment from 'moment';
+// import DatePicker from 'react-bootstrap-date-picker';
+// import DayPickerInput from 'react-day-picker/DayPickerInput';
+// import 'react-day-picker/lib/style.css';
+// import MomentLocaleUtils, {
+//     formatDate,
+//     parseDate,
+// } from 'react-day-picker/moment';
+import DatePickerInput from '../helpers/DatePicker';
+import 'moment/locale/lt';
 import Auxiliary from '../../hoc/Auxiliary';
 import Header from '../Header';
 import Footer from '../Footer';
@@ -25,12 +35,6 @@ class NewClient extends Component {
         });
     }
   
-    // clickCameraHandler = (dataFromChild) => {
-    //     this.setState({
-    //         [dataFromChild[0]]: dataFromChild[1]
-    //     });
-    // }
-  
     render() {
         return (
             <Auxiliary>
@@ -43,7 +47,6 @@ class NewClient extends Component {
                                     <div className='photoFrame'>  
                                         {this.state.startCamera1 ? 
                                         <TakePhoto 
-                                            // cameraWasClicked={this.clickCameraHandler}
                                             id='firstPhotoWasTaken' /> :
                                                 <CameraLogo
                                                     id='startCamera1'
@@ -56,7 +59,6 @@ class NewClient extends Component {
                                     <div className='photoFrame'>  
                                         {this.state.startCamera2 ? 
                                         <TakePhoto 
-                                            // cameraWasClicked={this.clickCameraHandler}
                                             id='secondPhotoWasTaken' /> :
                                                 <CameraLogo
                                                     id='startCamera2'
@@ -88,30 +90,31 @@ class NewClient extends Component {
                                 </FormGroup>
 
                                 <FormGroup>
-                                    <Label for="exampleDate">Gimimo data</Label>
-                                    <Input type="date" name="date" id="exampleDate" placeholder="Įveskite gimimo datą" />
+                                    <div>
+                                        <Label for="exampleDate">Amžius metais</Label> 
+                                        <Input type="number" name="age" id="exampleage" placeholder="Įveskite amžių" />   
+                                    </div>
+
+                                    
+                                    
+                                    {/* <DatePickerInput /> */}
+                                    {/* <DayPickerInput
+                                        formatDate={formatDate}
+                                        parseDate={parseDate}
+                                        format="L"
+                                        inputProps={{readOnly: true}} 
+                                        placeholder={`${formatDate(new Date(), 'L', 'lt')}`}
+                                        dayPickerProps={{
+                                            locale: 'lt',
+                                            localeUtils: MomentLocaleUtils,
+                                        }}
+                                    /> */}
                                 </FormGroup>
                                     
                                 <FormGroup>
                                     <Label for="exampleHeight">Ūgis</Label>
                                     <Input type="number" name="height" id="exampleHeight" placeholder="Įveskite ūgį" />
-                                </FormGroup>   
-                                    
-                                {/* <FormGroup>
-                                    <Label for="exampleFile">File</Label>
-                                    <Input type="file" name="file" id="exampleFile" />
-                                    <FormText color="muted">
-                                        This is some placeholder block-level help text for the above input.
-                                        It's a bit lighter and easily wraps to a new line.
-                                    </FormText>
-                                </FormGroup> */}
-                                                            
-                                {/* <FormGroup check>
-                                    <Label check>
-                                        <Input type="checkbox" />{' '}
-                                        Check me out
-                                    </Label>
-                                </FormGroup> */}
+                                </FormGroup>                                
                                 
                                 <Button color='success'>Pridėti</Button>
                             </Form>

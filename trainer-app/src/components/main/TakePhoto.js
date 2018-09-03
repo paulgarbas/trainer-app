@@ -4,8 +4,7 @@ import Camera from 'react-html5-camera-photo';
 import 'react-html5-camera-photo/build/css/index.css';
 import Spinner from '../helpers/Spinner';
 import Photo from './Photo';
-// import { Button } from 'reactstrap';
- 
+
 class TakePhoto extends Component {
 	
 	state = {
@@ -13,15 +12,17 @@ class TakePhoto extends Component {
 		secondPhotoWasTaken: null,
 		loading: true
 	};
-
+	
 	onTakePhoto (dataUri) {
-		// Do stuff with the dataUri photo...
 		let photo = dataUri;
 		this.setState({ 
-			[this.props.id]: photo
+			[this.props.id]: photo,
+			showCameraBtn: false
 		});
-		// this.props.cameraWasClicked([this.props.id, true]);
-		// console.log(this.props.id);
+		
+		// Camera button disappears
+		let cameraBtn = document.querySelector(`#${this.props.id}`).querySelector('#container-circles');
+		cameraBtn.style.display = 'none';
 	}
 
 	onCameraStart (stream) {
@@ -31,16 +32,22 @@ class TakePhoto extends Component {
 	}
 
 	resetHandler = (event) => {
-		this.setState = ({
-			[event.currentTarget.dataset.id]: null
+        event.preventDefault();
+
+		this.setState({
+			[this.props.id]: null,
+			showCameraBtn: true			
 		});
-		console.log(event.currentTarget.dataset.id);
+
+		// Camera button appears
+		let cameraBtn = document.querySelector(`#${this.props.id}`).querySelector('#container-circles');
+		cameraBtn.style.display = 'block';
 	}
 
 	render () {
 		return (
 			<Auxiliary>
-				<div className="camera">
+				<div id={this.props.id} className="camera">
 					{this.state.loading ? <Spinner /> : null}
 					
 					<Camera
@@ -55,14 +62,12 @@ class TakePhoto extends Component {
 
 					{this.state.firstPhotoWasTaken ? 
 						<Photo 
-							data-id='firstPhotoWasTaken'
 							path={this.state.firstPhotoWasTaken} 
 							altName='Nuotrauka iš priekio'
 							resetClicked={this.resetHandler} /> : 
 					null}
 					{this.state.secondPhotoWasTaken ? 
 						<Photo 
-							data-id='secondPhotoWasTaken'
 							path={this.state.secondPhotoWasTaken} 
 							altName='Nuotrauka iš šono'
 							resetClicked={this.resetHandler} /> : 
